@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
 //Challenge
-app.use('/examen',require('./archivos/examen.js'));
+app.use('/parcial',require('./archivos/parcial.js'));
 
 
 // finally, let's start our server...
