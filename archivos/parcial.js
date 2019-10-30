@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
 
 });
 
-//Ejercicio 1
+//Ejercicio 1 completo
  
 router.post('/info/obtenerClientePorId', async (req, res) => { 
  
@@ -30,27 +30,31 @@ router.post('/info/obtenerClientePorId', async (req, res) => {
 
 });
 
-//ejercicio 2
+//ejercicio 2 completo
 router.post('/calculadora/sumaEnIntervalo', async (req, res) => {
     let suma = 0 ;
     let num1= req.body.numero1;
     let num2= req.body.numero2;
-
-    if(num1 - num1 === 0 && num2 - num2 === 0 ){
-        for (var i = num1; i <= num2; i++) {
+if(num1-num1===0 && num2-num2===0){
+    if(num1 < num2){
+            for (var i = num1; i <= num2; i++) {
             suma = suma + i;     
-        }
+        }  
     } else {
-        suma = "Datos Incorrectos";
+        for (var i = num2; i <= num1; i++) {
+            suma = suma + i;     
+        }  
     }
-
+}else{
+    suma="Datos erroneos";
+}
     res.json({
         status: 'ok',
         Suma:  suma 
     });
-
 });
-//Ejercicio 3
+
+//Ejercicio 3 completo
 router.get('/info/limpiarCarteraGlobal', async (req, res) => { 
      
     for (let i = 0; i < datos.length; i++) {         
@@ -68,62 +72,58 @@ router.get('/info/limpiarCarteraGlobal', async (req, res) => {
 });
 
 //Ejercicio 4
-router.post('/info/agregarCliente', async (req, res) => { 
-    let idCliente= req.body.id;
-    let nombreCliente= req.body.nombre;
-    let empresaCliente= req.body.empresa;
-    let emailCliente= req.body.email;
-    let productosCompradosCliente= req.body.productosComprados;
-    let carteraPendienteCliente= req.body.carteraPendiente;
-     
-    var file = {file:{"cliente": idCliente, "nombre": nombreCliente, "empresa" : empresaCliente , "email" : emailCliente , "productosComprados" : productosCompradosCliente, "carteraPendiente" : carteraPendienteCliente}};
+router.post('/info/agregarCliente', async (req, res) => {
 
-    datos.push(file);
+    const { _id, nombre, empresa, email, productosComprados, carteraPendiente }= req.body;
+      
+       const newDato = {...req.body};
+       datos.push(newDato);
+       console.log(newDato);
 
     res.json({
-        status: 'ok',
-        Info: datos
+        status: 'Ok',
+        array:datos
+        
     });
-
-});
+})
 
 //Ejercicio 5
 router.get('/info/obtenerDatosMejorCliente', async (req, res) => { 
 
+        var mayor = 0;
+        for (var i = 0; i < datos.length; i++) {
 
-    for (let i = 0; i < datos.length; i++) {         
-        
-        Cantidad = Math.max(datos[i].productosComprados)
-
-    }
+            if (datos[i].productosComprados > mayor ) {
+                mayor = datos[i].productosComprados
+                nombre = datos[i].nombre;
+                Email = datos[i].email;
+        }
+            }
 
     res.json({
         status: 'ok',
-        Info: Cantidad
+        nombre: nombre,
+        email:Email
     });
 
 });
 
 
-//Ejercicio 6
+//Ejercicio 6 completo
 router.post('/manejo/dataCentral', async (req, res) => {
    
-    let cadenaRec= req.body.cadena;
-    var cantidadDeCaracteres = cadenaRec.length;
-    var ResultadoDiv = (cantidadDeCaracteres/2);
-    if (Math.floor(ResultadoDiv) === ResultadoDiv ){
-
-        var resultado = cadenaRec.substr((ResultadoDiv-1),2);
+    let cadenaRecibida= req.body.cadena;
+    var cantidadDeCaracteres = cadenaRecibida.length/2;
+    if (Math.floor(cantidadDeCaracteres) === cantidadDeCaracteres ){
+        var resultado = cadenaRecibida.substr((cantidadDeCaracteres-1),2);
     } else {
-        var resultado = cadenaRec.substr((ResultadoDiv),1);
+        var resultado = cadenaRecibida.substr((cantidadDeCaracteres),1);
     }
-
     res.json({
         Cantidad:cantidadDeCaracteres,
         status: 'ok',
         Suma:  resultado 
     });
-
 });
 
 

@@ -23,7 +23,7 @@ app.use('/parcial',require('./archivos/parcial.js'));
 
 
 // finally, let's start our server...
-var server = app.listen(process.env.PORT || 3366, function () {
+var server = app.listen(process.env.PORT || 3300, function () {
     console.log('Listening on port ' + server.address().port);
 });
 

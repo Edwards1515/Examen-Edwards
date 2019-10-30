@@ -4,7 +4,7 @@
         "nombre":"Pablo Perilla",
         "empresa":"Getel",
         "email":"pabloperilla@getel.com",
-        "productosComprados":1,
+        "productosComprados":3,
         "carteraPendiente": 532143
 
     },
@@ -22,7 +22,7 @@
         "nombre":"Miguel Gálvis",
         "empresa":"Larquin",
         "email":"m.galvis@larquin.com",
-        "productosComprados":3,
+        "productosComprados":6,
         "carteraPendiente": 548900
 
     },
@@ -31,7 +31,7 @@
         "nombre":"Nicolás Salazar",
         "empresa":"NCodes",
         "email":"nicolas.salazar@ncodes.co",
-        "productosComprados":0,
+        "productosComprados":4,
         "carteraPendiente": 0
 
     },
